@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import React from "react";
+import PropTypes from 'prop-types'
 
-function MyForm(props) {
+const MyForm = ({citas, setCitas}) => {
     
     const updateCitas = () => {
         const nuevaCita = {
@@ -13,7 +14,7 @@ function MyForm(props) {
             sintomas: document.getElementById("sintomas").value
         } 
         
-        props.setCitas([...props.citas, nuevaCita]); //el push del array causó errores. Preferentemente usar esta sintaxis.
+        setCitas([...citas, nuevaCita]); //el push del array causó errores. Preferentemente usar esta sintaxis.
     }
 
     return (
@@ -38,6 +39,11 @@ function MyForm(props) {
             </div>
         </div>
     )
+}
+
+MyForm.propTypes = {
+    citas: PropTypes.array.isRequired,
+    setCitas: PropTypes.func.isRequired
 }
 
 export default MyForm;
